@@ -7,7 +7,7 @@ import {Route, Switch } from 'react-router-dom';
 import App from './App';
 
 // import API from './config/API';
-import appLogin from "./components/appLogin";
+import appLogin from "./sites/appLogin";
 // const baseurl = API.basename;
 const AppRoutes = () =>
 
