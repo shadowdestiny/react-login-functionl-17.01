@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
-import './appLogin.scss'
+import './appLogin.scss';
+import axios from 'axios';
+import ListRol from "../../components/listRol";
+import Modal from "../../components/modal";
 
 export default class appLogin extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             fields: {
                 userRef: "",
-                userPass: ""
+                userPass: "",
             },
+            listRol: [],
+            isShowModal: 'false',
+
             errors: {},
             isError: false
         };
@@ -42,7 +47,28 @@ export default class appLogin extends Component {
 
     loginSubmit = (e) => {
         e.preventDefault();
-        this.handleValidation();
+        if (this.handleValidation()) {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+
+            const user = {
+                username: this.state.fields.userRef,
+                password: this.state.fields.userPass,
+                application: 'front_script',
+            };
+            axios.post(`https://api-proxy-dev.adrfsc.cl/frontscript/login`, user, {
+                headers,
+            })
+                .then(res => {
+                    const listRol = res.data;
+                    this.setState({
+                        listRol,
+                        isShowModal: 'true'
+                    });
+                });
+
+        }
     }
 
     handleChange = (e) => {
@@ -51,7 +77,6 @@ export default class appLogin extends Component {
         this.setState({fields});
         this.handleValidation();
     }
-
 
     render() {
         const reHeight = this.state.isError ? {'height': '480px'} : {};
@@ -68,7 +93,7 @@ export default class appLogin extends Component {
                     <div className={"form-section"}>
                         <div className="row text-left">
                             <div className={"col-12 p-5"}>
-                                <form name={"loginForm"} onSubmit = {this.loginSubmit}>
+                                <form name={"loginForm"} onSubmit={this.loginSubmit}>
                                     <div className="form-group text-center">
                                         <small id="password_ref" className="form-text text-muted">
                                             Inicio de sesión
@@ -81,7 +106,8 @@ export default class appLogin extends Component {
                                                name={"userRef"}
                                                onChange={this.handleChange} value={this.state.fields["userRef"]}
                                         />
-                                        {this.state.errors["userRef"] && <div className="alert alert-danger mt-2" role="alert">
+                                        {this.state.errors["userRef"] &&
+                                        <div className="alert alert-danger mt-2" role="alert">
                                             <span style={{color: "red"}}>{this.state.errors["userRef"]}</span>
                                         </div>}
                                     </div>
@@ -94,17 +120,23 @@ export default class appLogin extends Component {
                                                onChange={this.handleChange} value={this.state.fields["userPass"]}
                                         />
 
-                                        {this.state.errors["userPass"] && <div className="alert alert-danger mt-2" role="alert">
+                                        {this.state.errors["userPass"] &&
+                                        <div className="alert alert-danger mt-2" role="alert">
                                             <span style={{color: "red"}}>{this.state.errors["userPass"]}</span>
                                         </div>}
                                     </div>
 
                                     <div className="form-group text-center">
-                                        <button type="submit" className="btn btn-primary" onClick={this.loginSubmit}>Iniciar sesión</button>
+                                        <button type="submit" className="btn btn-primary"
+                                                onClick={this.loginSubmit}>Iniciar sesión
+                                        </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <Modal isshow={this.state.isShowModal}>
+                            <ListRol listrol={this.state.listRol}/>
+                        </Modal>
                     </div>
                 </div>
             </div>

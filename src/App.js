@@ -5,6 +5,8 @@ import AppHeader from './components/appHeader/appHeader';
 import AppFooter from './components/appFooter/appFooter';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap';
 
 class App extends Component {
 
