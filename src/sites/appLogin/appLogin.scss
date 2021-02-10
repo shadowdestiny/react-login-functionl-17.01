@@ -3,7 +3,7 @@
     border-radius: 10px;
     display: flex;
     width: 90%;
-    height: 400px;
+    min-height: 400px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -21,7 +21,7 @@
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
         border: 1px solid var(--gray);
-        height: 400px;
+        min-height: 400px;
         display: table;
         .title-section{
             display: table-cell;
@@ -41,7 +41,7 @@
         -moz-border-radius-bottomright: 8px;
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
-        height: 400px;
+        min-height: 400px;
         display: table;
         @include for-mobile{
             -webkit-border-top-left-radius: 8px;
