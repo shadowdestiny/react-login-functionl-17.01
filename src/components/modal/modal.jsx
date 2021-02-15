@@ -17,7 +17,10 @@ export default class modal extends Component {
     }
 
     closeModal = () => {
-        this.setState({isOpen: 'false'})
+        this.setState({isOpen: 'false'});
+        const {onClick} = this.props;
+        if (!!onClick)
+            onClick();
     }
 
     render() {
