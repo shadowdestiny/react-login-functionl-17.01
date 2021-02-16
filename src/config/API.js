@@ -1,38 +1,7 @@
 const API = {
+    path: process.env.REACT_APP_PATH,
     services : {
-        listarProducto:"http://172.25.33.235:9082/APISinProductoTST/rest/listarProducto"
-    },
-    test : 'Prod',
-    basename : '/canalweb',
-    type_rol : {
-        broker:{
-            name : "broker",
-            label : "Broker",
-            code : "01660",
-            description : "ROL_BROKER_CLRG",
-            alias : "B"
-        },
-        preventor:{
-            name : "preventor",
-            label : "Preventor",
-            code : "01662",
-            description : "ROL_PREVENTOR_CLRG",
-            alias : "P"
-        },
-        CT:{
-            name : "CT",
-            label : "",
-            code : "",
-            description : "",
-            alias : "C"
-        },
-        ejecutivo:{
-            name : "ejecutivo",
-            label : "Ejecutivo",
-            code : "",
-            description : "",
-            alias : "E"
-        }
+        auth: `${process.env.REACT_APP_PATH} ${process.env.REACT_APP_LOGIN}`
     }
 }
 export default API;

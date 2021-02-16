@@ -5,13 +5,14 @@ import axios from 'axios';
 import ListRol from "../../components/listRol";
 import Modal from "../../components/modal";
 import {initialData, updateState} from "../../redux/loginReducer";
+import API from "../../config/API";
 
 const AppLogin = () => {
     const dispatch = useDispatch();
     const state = useSelector(store => store.login);
 
     useEffect(() => {
-      dispatch(initialData())
+        dispatch(initialData())
     }, [])
 
     const handleValidation = () => {
@@ -36,9 +37,9 @@ const AppLogin = () => {
         return formIsValid;
     }
 
-    const setState = (state) =>{
+    const setState = (state) => {
         console.log(state);
-        dispatch (updateState(state))
+        dispatch(updateState(state))
     }
 
     const loginSubmit = (e) => {
@@ -53,7 +54,7 @@ const AppLogin = () => {
                 password: state.fields.userPass,
                 application: 'front_script',
             };
-            axios.post(`https://api-proxy-dev.adrfsc.cl/frontscript/login`, user, {
+            axios.post(`${API.services.auth}`, user, {
                 headers,
             })
                 .then(res => {
