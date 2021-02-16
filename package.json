@@ -22,7 +22,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "env-cmd ./.env.local.example react-scripts start",
+    "start": "env-cmd -f ./.env.local.example react-scripts start",
     "start:dev": "env-cmd -f ./.env.development react-scripts start",
     "build:dev": "env-cmd -f ./.env.development react-scripts build",
     "build:qa": "env-cmd -f ./.env.qa react-scripts build",
