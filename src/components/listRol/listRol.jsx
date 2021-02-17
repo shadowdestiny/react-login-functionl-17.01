@@ -23,7 +23,7 @@ export default class listRol extends Component {
     buildNameLi(i, row) {
         return <div className="list-group" key={i.toString()}>
             <a href="#" className="list-group-item list-group-item-action">
-                {row.label}
+                {row.group}
             </a>
         </div>;
     }
