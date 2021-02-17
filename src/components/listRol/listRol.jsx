@@ -1,26 +1,19 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import './listRol.scss'
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import * as listRolActions from "../../store/listRol/actions";
-export default class listRol extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            listRol: this.props.listrol
-        };
-    }
 
-    buildList() {
-        const lists = this.props.listrol;
+const ListRol = (props) => {
+    const lists = props.listrol;
+
+    const buildList = () => {
+
         let listHtml = [];
         lists.forEach((l, i) => {
-            listHtml.push(this.buildNameLi(i, l));
+            listHtml.push(buildNameLi(i, l));
         });
         return listHtml;
     }
 
-    buildNameLi(i, row) {
+    const buildNameLi = (i, row) => {
         return <div className="list-group" key={i.toString()}>
             <a href="#" className="list-group-item list-group-item-action">
                 {row.group}
@@ -28,13 +21,10 @@ export default class listRol extends Component {
         </div>;
     }
 
-    render() {
-        return <div className="component-list-rol">
-            {this.buildList()}
-        </div>;
-    }
+    return <div className="component-list-rol">
+        {buildList()}
+    </div>;
+
 }
-// export default connect(
-//     ({ listRol }) => ({ ...listRol }),
-//     dispatch => bindActionCreators({ ...listRolActions }, dispatch)
-//   )( listRol );
+
+export default ListRol;

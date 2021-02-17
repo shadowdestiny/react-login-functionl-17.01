@@ -1,9 +1,10 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import ListRol from "../../components/listRol";
-import Modal from "../../components/modal";
+import ListRol from '../../components/listRol';
+import Modal from '../../components/modal';
 import './appLogin.scss';
 import {auth, initialData, updateState} from "../../redux/loginReducer";
+import ERROR from "../../config/ERROR";
 
 const AppLogin = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const AppLogin = () => {
         let fields = state.fields;
         let errors = {};
         let formIsValid = true;
-        const noEmptyText = "El campo no puede estar vacío"
+        const noEmptyText = ERROR.validation.empty
 
         //username
         if (!fields["userRef"]) {

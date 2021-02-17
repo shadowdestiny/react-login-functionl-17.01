@@ -1,6 +1,4 @@
-import axios from 'axios'
-import API from "../config/API";
-import ERROR from "../config/ERROR";
+import AuthService from "../services/authService";
 
 //state
 const dataInitial = {
@@ -61,59 +59,7 @@ export const updateState = (stateObject) => async (dispatch, {}) => {
 
 export const auth = (user) => async (dispatch,) => {
     try {
-
-        const headers = {
-            'Content-Type': 'application/json',
-        };
-
-        axios.post(`${API.services.auth}`, user, {
-            headers,
-        })
-            .then(res => {
-                const listRol = res.data;
-                dispatch({
-                    type: UPDATE_ELEMENT,
-                    payload: {
-                        listRol,
-                        isShowModal: 'true'
-                    }
-                })
-            }).catch((err) => {
-            let jsonDetails = {};
-            if (err.response) {
-                jsonDetails.error = err.response.data.errorMessage;
-                let errors = {};
-                errors['axios'] = jsonDetails.error;
-                dispatch({
-                    type: UPDATE_ELEMENT,
-                    payload: {
-                        errors
-                    }
-                })
-            } else if (err.request) {
-                jsonDetails.error = ERROR.text.connection;
-                let errors = {};
-                errors['axios'] = jsonDetails.error;
-                dispatch({
-                    type: UPDATE_ELEMENT,
-                    payload: {
-                       errors
-                    }
-                })
-            } else {
-                jsonDetails.error = ERROR.text.error;
-                let errors = {};
-                errors['axios'] = jsonDetails.error;
-                dispatch({
-                    type: UPDATE_ELEMENT,
-                    payload: {
-                        errors
-                    }
-                })
-            }
-        });
-
-
+        AuthService.auth(user,dispatch, UPDATE_ELEMENT);
     } catch (error) {
         console.log(error)
     }
