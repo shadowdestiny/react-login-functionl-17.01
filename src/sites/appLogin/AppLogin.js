@@ -1,11 +1,8 @@
 import React, {Fragment, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import './appLogin.scss';
-import axios from 'axios';
 import ListRol from "../../components/listRol";
 import Modal from "../../components/modal";
-import {initialData, updateState} from "../../redux/loginReducer";
-import API from "../../config/API";
+import {auth, initialData, updateState} from "../../redux/loginReducer";
 
 const AppLogin = () => {
     const dispatch = useDispatch();
@@ -15,7 +12,7 @@ const AppLogin = () => {
         dispatch(initialData())
     }, [])
 
-    const handleValidation = () => {
+    const  handleValidation = () => {
         let fields = state.fields;
         let errors = {};
         let formIsValid = true;
@@ -38,33 +35,20 @@ const AppLogin = () => {
     }
 
     const setState = (state) => {
-        console.log(state);
         dispatch(updateState(state))
     }
 
     const loginSubmit = (e) => {
         e.preventDefault();
         if (handleValidation()) {
-            const headers = {
-                'Content-Type': 'application/json',
-            };
 
             const user = {
                 username: state.fields.userRef,
                 password: state.fields.userPass,
                 application: 'front_script',
             };
-            axios.post(`${API.services.auth}`, user, {
-                headers,
-            })
-                .then(res => {
-                    const listRol = res.data;
-                    setState({
-                        listRol,
-                        isShowModal: 'true'
-                    });
-                });
 
+            dispatch(auth(user))
         }
     }
 
@@ -127,6 +111,11 @@ const AppLogin = () => {
                                                 <span style={{color: "red"}}>{state.errors["userPass"]}</span>
                                             </div>}
                                         </div>
+
+                                        {state.errors["axios"] &&
+                                        <div className="alert alert-danger mt-2" role="alert">
+                                            <span style={{color: "red"}}>{state.errors["axios"]}</span>
+                                        </div>}
 
                                         <div className="form-group text-center">
                                             <button type="submit" className="btn btn-primary"
