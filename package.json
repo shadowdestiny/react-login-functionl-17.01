@@ -23,8 +23,8 @@
   },
   "scripts": {
     "start": "env-cmd ./src/enviroments/.env.local.example react-scripts start",
-    "start:dev": "env-cmd -f ./src/enviroments/.env.development react-scripts start",
-    "build:dev": "env-cmd -f ./src/enviroments/.env.local.example react-scripts build",
+    "start:dev": "env-cmd -f ./src/enviroments/.env.dev react-scripts start",
+    "build:dev": "env-cmd -f ./src/enviroments/.env.dev react-scripts build",
     "build:qa": "env-cmd -f ./src/enviroments/.env.qa react-scripts build",
     "build:uat": "env-cmd -f ./src/enviroments/.env.uat react-scripts build",
     "test": "react-scripts test",
