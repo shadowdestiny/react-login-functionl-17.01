@@ -1,5 +1,5 @@
 {
-  "name": "login",
+  "name": "seguros-ti-login-mantenedorproducto",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,11 +22,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "env-cmd src/enviroments/.env.local.example react-scripts start",
-    "start:dev": "env-cmd -f src/enviroments/.env.development react-scripts start",
-    "build:dev": "env-cmd -f src/enviroments/.env.local.example react-scripts build",
-    "build:qa": "env-cmd -f src/enviroments/.env.qa react-scripts build",
-    "build:uat": "env-cmd -f src/enviroments/.env.uat react-scripts build",
+    "start": "env-cmd ./src/enviroments/.env.local.example react-scripts start",
+    "start:dev": "env-cmd -f ./src/enviroments/.env.development react-scripts start",
+    "build:dev": "env-cmd -f ./src/enviroments/.env.local.example react-scripts build",
+    "build:qa": "env-cmd -f ./src/enviroments/.env.qa react-scripts build",
+    "build:uat": "env-cmd -f ./src/enviroments/.env.uat react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
