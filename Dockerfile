@@ -1,26 +1,14 @@
-FROM node:15.8.0-alpine
-
-#ARG profile=dev
-
-#ENV ENVIRONMENT=$profile
-
+FROM node:14 as build-deps
+ARG profile=dev
+ENV ENVIRONMENT=$profile
 WORKDIR /app
-
 COPY package.json ./
-
-COPY package-lock.json ./
-
-COPY yarn.lock ./
-
+COPY package-lock.json yarn.lock ./
 ADD . /app
-
-RUN npm install --global yarn
-
 RUN yarn install
+CMD  ["sh", "-c","yarn build:${ENVIRONMENT}"]
 
-# RUN npm i
-
-# EXPOSE 8080
-
-CMD  ["sh", "-c","yarn build:dev"]
-
+FROM nginx:1.19.7-alpine
+COPY --from=build-deps /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
