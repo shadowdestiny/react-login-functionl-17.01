@@ -1,5 +1,5 @@
 {
-  "name": "seguros-ti-login-mantenedorproducto",
+  "name": "seguros-ti-auth-mf",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
