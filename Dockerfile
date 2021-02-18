@@ -9,10 +9,7 @@ RUN yarn install
 CMD  ["sh", "-c","yarn build:${ENVIRONMENT}"]
 
 FROM nginx:1.19.7-alpine
-ENV PORT=8080
-ENV SERVER_NAME=test
-ENV BASE_ENDPOINT=test_base
 COPY --from=build-deps /app/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE $PORT
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
