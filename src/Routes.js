@@ -1,27 +1,25 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import generateStore from './redux/store'
-//import { BrowserRouter as Router, Route } from 'react-router-dom'
-/*import { syncHistoryWithStore } from 'react-router-redux';*/
+import API from './config/API'
 
-// ---
+
 import App from './App';
 
-// import API from './config/API';
 import appLogin from "./sites/appLogin";
-// const baseurl = API.basename;
+
 const AppRoutes = () => {
     const store = generateStore();
     return (
         <Provider store={store}>
-            <Route>
+            <Router basename={API.baseName}>
                 <App>
-                    <Switch>
+                    <Switch >
                         <Route exact path={`/`} component={appLogin}/>
                     </Switch>
                 </App>
-            </Route>
+            </Router>
         </Provider>)
 }
 
