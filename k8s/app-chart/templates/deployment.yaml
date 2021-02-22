@@ -21,12 +21,12 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}
-          #env:
-          #- name: ENVIRONMENT
-          #  valueFrom:
-          #      secretKeyRef:
-          #        name: seguros-ti-auth-mf-secrets
-          #        key: ENVIRONMENT
+          env:
+          - name: REACT_APP_BASE_NAME
+            valueFrom:
+                secretKeyRef:
+                  name: seguros-ti-auth-mf-secrets
+                  key: REACT_APP_BASE_NAME
           envFrom:
           - configMapRef:
                name: {{ .Values.configmap.name }}
