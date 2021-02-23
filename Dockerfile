@@ -1,4 +1,4 @@
-FROM node:14
+FROM hoosin/alpine-nginx-nodejs:latest
 RUN yarn config set strict-ssl false --global
 ARG profile=dev
 
