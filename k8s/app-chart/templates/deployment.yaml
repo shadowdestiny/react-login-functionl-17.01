@@ -27,6 +27,26 @@ spec:
                 secretKeyRef:
                   name: seguros-ti-auth-mf-secrets
                   key: REACT_APP_BASE_NAME
+          - name: REACT_APP_LOGIN
+              valueFrom:
+                secretKeyRef:
+                  name: seguros-ti-auth-mf-secrets
+                  key: REACT_APP_LOGIN
+          - name: REACT_APP_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: seguros-ti-auth-mf-secrets
+                  key: REACT_APP_PATH
+          - name: REACT_APP_WEBSITE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: seguros-ti-auth-mf-secrets
+                  key: REACT_APP_WEBSITE_NAME
+          - name: REACT_APP_APPLICATION
+              valueFrom:
+                secretKeyRef:
+                  name: seguros-ti-auth-mf-secrets
+                  key: REACT_APP_APPLICATION
           envFrom:
           - configMapRef:
                name: {{ .Values.configmap.name }}
