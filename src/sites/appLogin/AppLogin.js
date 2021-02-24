@@ -5,6 +5,7 @@ import Modal from '../../components/modal';
 import './appLogin.scss';
 import {auth, initialData, updateState} from "../../redux/loginReducer";
 import ERROR from "../../config/ERROR";
+import API from "../../config/API";
 
 const AppLogin = () => {
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const AppLogin = () => {
             const user = {
                 username: state.fields.userRef,
                 password: state.fields.userPass,
-                application: 'front_script',
+                application: API.application,
             };
 
             dispatch(auth(user))
